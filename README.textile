@@ -1,0 +1,13 @@
+h1. Jersey 2 Sample App
+
+Example showing how to develop a sample Jersey 2 application. This sample uses the latest and greatest Jackson 2 JSON+XML providers.
+No JAXB annotations or whatsoever on your domain classes. Enjoy!
+
+h2. Setup
+
+* git clone https://github.com/aruld/jersey2-sample.git
+* mvn install
+
+h2. Testing
+
+* Run ClusterTest from your favourite IDE
