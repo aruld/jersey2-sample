@@ -1,5 +1,8 @@
 package core;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Cluster {
     private long id;
     private String name;
