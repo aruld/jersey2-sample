@@ -78,8 +78,7 @@ You should see messages similar to the following on the server-side log :
 
 Access using CURL to see a sample JSON response:
 
-curl -i --header "Accept: application/json" http://localhost:8080/cluster/admin/35
-
+    curl -i --header "Accept: application/json" http://localhost:8080/cluster/admin/35
     HTTP/1.1 200 OK
     X-Powered-By: Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition  4.0  Java/Oracle Corporation/1.7)
     Server: GlassFish Server Open Source Edition  4.0
@@ -87,7 +86,7 @@ curl -i --header "Accept: application/json" http://localhost:8080/cluster/admin/
     Date: Sat, 26 Jan 2013 21:06:09 GMT
     Transfer-Encoding: chunked
 
-    {"id":35,"name":"GF Cluster"}arul:jersey2-sample
+    {"id":35,"name":"GF Cluster"}
 
 
 You should see messages similar to the following on the server-side log :
