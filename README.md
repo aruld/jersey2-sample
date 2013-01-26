@@ -23,13 +23,21 @@ Download latest promoted build here(http://dlc.sun.com.edgesuite.net/glassfish/4
 Start GlassFish server:
 
     bin/asadmin start-domain
+    Waiting for domain1 to start ......
+    Successfully started the domain : domain1
+    domain  Location: /glassfish3/glassfish/domains/domain1
+    Log File: /glassfish3/glassfish/domains/domain1/logs/server.log
+    Admin Port: 4848
+    Command start-domain executed successfully.
 
 Deploy Sample Application (from your sample project dir):
 
     bin/asadmin deploy target/cluster.war
+    Application deployed with name cluster.
+    Command deploy executed successfully.
 
 
-You should see messages similar to the following : tail -f glassfish/domains/domain1/logs/server.log
+You should see messages similar to the following on the server-side log :
 
     [#|2013-01-26T10:55:53.474-1000|INFO|glassfish 4.0|org.glassfish.jersey.servlet.init.JerseyServletContainerInitializer|_ThreadID=78;_ThreadName=admin-listener(1);_TimeMillis=1359233753474;_LevelValue=800;|Registering the Jersey servlet application, named resources.MyApplication, at the servlet mapping /*, with the Application class of the same name.|#]
 
@@ -46,9 +54,9 @@ List Deployed Applications
     Command list-applications executed successfully.
 
 
-Access the URL <http://localhost:8080/cluster/admin/35> to see a sample response.
+Access the URL <http://localhost:8080/cluster/admin/35> to see a sample XML response.
 
-You should see messages similar to the following :
+You should see messages similar to the following on the server-side log :
 
     [#|2013-01-26T10:56:50.732-1000|INFO|glassfish 4.0|org.glassfish.jersey.server.ApplicationHandler|_ThreadID=19;_ThreadName=http-listener-1(2);_TimeMillis=1359233810732;_LevelValue=800;|Initiating Jersey application, version Jersey: 2.0-m11 2012-12-21 12:34:15...|#]
 
@@ -66,6 +74,36 @@ You should see messages similar to the following :
     2 < 200
     2 < Content-Type: application/xml
     |#]
+
+
+Access using CURL to see a sample JSON response:
+
+curl -i --header "Accept: application/json" http://localhost:8080/cluster/admin/35
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition  4.0  Java/Oracle Corporation/1.7)
+    Server: GlassFish Server Open Source Edition  4.0
+    Content-Type: application/json
+    Date: Sat, 26 Jan 2013 21:06:09 GMT
+    Transfer-Encoding: chunked
+
+    {"id":35,"name":"GF Cluster"}arul:jersey2-sample
+
+
+You should see messages similar to the following on the server-side log :
+
+    [#|2013-01-26T11:06:09.122-1000|INFO|glassfish 4.0|org.glassfish.jersey.filter.LoggingFilter|_ThreadID=22;_ThreadName=http-listener-1(5);_TimeMillis=1359234369122;_LevelValue=800;|1 * LoggingFilter - Request received on thread http-listener-1(5)
+    1 > GET http://localhost:8080/cluster/admin/35
+    1 > user-agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8r zlib/1.2.5
+    1 > host: localhost:8080
+    1 > accept: application/json
+    |#]
+
+    [#|2013-01-26T11:06:09.124-1000|INFO|glassfish 4.0|org.glassfish.jersey.filter.LoggingFilter|_ThreadID=22;_ThreadName=http-listener-1(5);_TimeMillis=1359234369124;_LevelValue=800;|2 * LoggingFilter - Response received on thread http-listener-1(5)
+    2 < 200
+    2 < Content-Type: application/json
+    |#]
+
 
 Undeploy the sample application
 
