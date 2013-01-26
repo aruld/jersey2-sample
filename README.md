@@ -176,3 +176,9 @@ Undeploy the sample application
 
     bin/asadmin undeploy cluster
     Command undeploy executed successfully.
+
+Stop GlassFish server:
+
+    bin/asadmin stop-domain
+    Waiting for the domain to stop .
+    Command stop-domain executed successfully.
